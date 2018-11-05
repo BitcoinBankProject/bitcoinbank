@@ -1,0 +1,34 @@
+src/*.exe
+src/bitcoinbank
+src/bitcoinbankd
+src/test_bitcoinbank
+.*.swp
+*.*~*
+*.bak
+*.rej
+*.orig
+*.o
+*.patch
+.bitcoinbank
+
+# Compilation and Qt preprocessor part
+*.qm
+Makefile
+bitcoinbank-qt
+Bitcoinbank-Qt.app
+
+# Unit-tests
+Makefile.test
+bitcoinbank-qt_test
+
+# Resources cpp
+qrc_*.cpp
+
+# Qt creator
+*.pro.user
+
+# Mac specific
+.DS_Store
+build
+
+!src/leveldb*/Makefile
