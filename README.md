@@ -4,7 +4,8 @@ BitcoinBank
 http://www.BitcoinBankProject.com
 
 Copyright (c) 2009-2014 Bitcoin Developers
-Copyright (c) 2011-2014 Bitcoinbank Developers
+Copyright (c) 2011-2014 Litecoin Developers
+
 Copyright (c) 2018-2018 BitCoinBank Project Developers
 
 What is Bitcoinbank?
