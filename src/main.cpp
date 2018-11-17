@@ -35,7 +35,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x54c52a6417bb88b81d3fabeab14ff3bce62ff8deaf3f93107b5ba433173409f4");
+uint256 hashGenesisBlock("0x51305f8e63f3fcce6be55cbdc07360b7ab1f914eb7a4d22ba8c23baff9868dac");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Bitcoinbank: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -1087,16 +1087,16 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 100 * COIN;
+    int64 nSubsidy = 50 * COIN;
 
-    // Subsidy is cut in half every 500000 blocks, which will occur approximately every 9.5 years
-    nSubsidy >>= (nHeight / 500000); // Bitcoinbank: 500k blocks in ~9.5 years
+    // Subsidy is cut in half every 840000 blocks, which will occur approximately every 3.2 years
+    nSubsidy >>= (nHeight / 840000); // Bitcoinbank: 840k blocks in 3.2 years
 
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 5 * 24 * 60 * 60; // Bitcoinbank: 5 days
-static const int64 nTargetSpacing = 10 * 60; // Bitcoinbank: 10 minutes
+static const int64 nTargetTimespan = 10 * 60; // Bitcoinbank: 10 minutes
+static const int64 nTargetSpacing = 2 * 60; // Bitcoinbank: 2 minutes
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
@@ -2746,7 +2746,7 @@ bool LoadBlockIndex()
         pchMessageStart[1] = 0xc3;
         pchMessageStart[2] = 0xb4;
         pchMessageStart[3] = 0xd1;
-        hashGenesisBlock = uint256("0xeb5a18c7b49a910666db02ce2b3cc32b75b78bc104d1b56ee5ba453f35ddbc64");
+        hashGenesisBlock = uint256("0xd8f4e774c89822fb9efed91904d00604709f91ccb2247c2aa0a7d38a05d99792");
     }
 
     //
@@ -2779,26 +2779,26 @@ bool InitBlockIndex() {
         //   vMerkleTree: 97ddfbbae6
 
         // Genesis block
-        const char* pszTimestamp = "Kavanaugh sparks protests in Washington.";
+        const char* pszTimestamp = "Kim Jong Un tests high-tech weapon in message to the US.";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 100 * COIN;
+        txNew.vout[0].nValue = 50 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("0499d3e3958ecd6f7fd5eeb47c6d8aae1373e2be58a820bb5355a04af7cdf6cc1a14cb8bb8987f599bd166d0db64bcb0b9b4210f764eabd669c926a7d005745469") << OP_CHECKSIG;
         CBlock block;
         block.vtx.push_back(txNew);
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1538871003;
+        block.nTime    = 1542418364;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 2084604398;
+        block.nNonce   = 2086265461;
 
         if (fTestNet)
         {
-            block.nTime    = 1538870945;
-            block.nNonce   = 385510691;
+            block.nTime    = 1542418313;
+            block.nNonce   = 386610361;
         }
 
 if (false && block.GetHash() != hashGenesisBlock)
@@ -2849,7 +2849,7 @@ if (false && block.GetHash() != hashGenesisBlock)
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0xec7effd0fa6bf98ceea2e08727e7382b5492e9879b45e9cfc23a1e6d275d789c"));
+        assert(block.hashMerkleRoot == uint256("0x2453a2344e3181b3e9f421a03954e58b40bead8480c0393300178c3a22455724"));
         block.print();
         assert(hash == hashGenesisBlock);
 
