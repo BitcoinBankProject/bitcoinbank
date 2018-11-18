@@ -3,6 +3,8 @@ BitcoinBank
 
 http://www.BitcoinBankProject.com
 
+http://www.BitcoinBankProject.com/explorer
+
 Copyright (c) 2018-2018 BitCoinBank Project Developers
 Copyright (c) 2011-2014 Litecoin Developers
 Copyright (c) 2009-2014 Bitcoin Developers
